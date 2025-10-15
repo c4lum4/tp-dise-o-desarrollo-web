@@ -1,0 +1,27 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f9fa;
+}
+
+h1, h2, h5 {
+  color: #1e1e1e;
+}
+
+.navbar-brand {
+  letter-spacing: 1px;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  transition: 0.3s ease;
+}
+
+.card-footer {
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+footer {
+  font-size: 0.9rem;
+}
+
