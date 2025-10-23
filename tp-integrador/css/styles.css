@@ -1,34 +1,36 @@
-/* Estilos básicos para el marketplace */
+/* Mi pagina */
 
+/* Todo */
 body {
   font-family: Arial, sans-serif;
   background-color: #f8f9fa;
   color: #333;
+  line-height: 1.5;
 }
 
-/* Navbar simple */
+/* Menu */
 .navbar {
-  background-color: white !important;
+  background-color: white;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .navbar-brand {
   font-weight: bold;
-  color: #007bff !important;
+  color: #007bff;
   font-size: 1.5rem;
 }
 
 .nav-link {
-  color: #666 !important;
+  color: #666;
   font-weight: 500;
 }
 
 .nav-link:hover,
 .nav-link.active {
-  color: #007bff !important;
+  color: #007bff;
 }
 
-/* Cards simples */
+/* Cards */
 .card {
   border: none;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -65,7 +67,7 @@ body {
   margin-bottom: 15px;
 }
 
-/* Botones simples */
+/* Botones */
 .btn {
   border-radius: 8px;
   font-weight: 500;
@@ -101,7 +103,7 @@ body {
   font-size: 1.3rem;
 }
 
-/* Footer simple */
+/* Footer */
 footer {
   background-color: #333;
   color: white;
@@ -126,7 +128,7 @@ h2 {
 
 /* Texto */
 .text-muted {
-  color: #666 !important;
+  color: #666;
 }
 
 .lead {
@@ -135,7 +137,7 @@ h2 {
   margin-bottom: 30px;
 }
 
-/* Espaciado */
+/* Espacios */
 .mb-3 {
   margin-bottom: 20px;
 }
@@ -156,13 +158,13 @@ h2 {
   padding: 50px 0;
 }
 
-/* Imágenes */
+/* Imagenes */
 .img-fluid {
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-/* Badges simples */
+/* Badges */
 .badge {
   background-color: #e9ecef;
   color: #333;
@@ -172,7 +174,7 @@ h2 {
   font-weight: 500;
 }
 
-/* Responsive básico */
+/* Mobile */
 @media (max-width: 768px) {
   h1 {
     font-size: 2rem;

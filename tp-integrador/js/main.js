@@ -1,10 +1,10 @@
-// JavaScript simple para el marketplace
+// Mi pagina
 
-// Cargar productos en la página de productos
-function cargarProductos() {
-    const contenedor = document.getElementById('contenedor-productos');
+// Mostrar productos
+function mostrarProductos() {
+    const div = document.getElementById('productos');
     
-    if (contenedor) {
+    if (div) {
         const productos = [
             { 
                 nombre: "Remera Oversize", 
@@ -50,10 +50,10 @@ function cargarProductos() {
             }
         ];
 
-        // Limpiar el contenedor
-        contenedor.innerHTML = '';
+        // Limpiar
+        div.innerHTML = '';
 
-        // Crear las cards de productos
+        // Crear cards
         productos.forEach(producto => {
             const card = `
                 <div class="col-md-4 col-lg-4">
@@ -65,7 +65,7 @@ function cargarProductos() {
                             <p class="card-text">${producto.descripcion}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <span class="fw-bold">$${producto.precio.toLocaleString()}</span>
-                                <button class="btn btn-dark" onclick="agregarAlCarrito('${producto.nombre}', ${producto.precio})">
+                                <button class="btn btn-dark" onclick="comprar('${producto.nombre}', ${producto.precio})">
                                     Comprar
                                 </button>
                             </div>
@@ -73,16 +73,16 @@ function cargarProductos() {
                     </div>
                 </div>
             `;
-            contenedor.innerHTML += card;
+            div.innerHTML += card;
         });
     }
 }
 
-// Cargar novedades en la página de novedades
-function cargarNovedades() {
-    const contenedor = document.getElementById('contenedor-novedades');
+// Mostrar novedades
+function mostrarNovedades() {
+    const div = document.getElementById('novedades');
     
-    if (contenedor) {
+    if (div) {
         const novedades = [
             {
                 titulo: "Nueva Colección",
@@ -104,10 +104,10 @@ function cargarNovedades() {
             }
         ];
 
-        // Limpiar el contenedor
-        contenedor.innerHTML = '';
+        // Limpiar
+        div.innerHTML = '';
 
-        // Crear las cards de novedades
+        // Crear cards
         novedades.forEach(novedad => {
             const card = `
                 <div class="col-md-4">
@@ -124,18 +124,18 @@ function cargarNovedades() {
                     </div>
                 </div>
             `;
-            contenedor.innerHTML += card;
+            div.innerHTML += card;
         });
     }
 }
 
-// Función para agregar productos al carrito
-function agregarAlCarrito(nombre, precio) {
+// Comprar
+function comprar(nombre, precio) {
     alert(`✅ ${nombre} agregado al carrito - $${precio.toLocaleString()}`);
 }
 
-// Ejecutar cuando la página cargue
+// Cargar pagina
 document.addEventListener('DOMContentLoaded', function() {
-    cargarProductos();
-    cargarNovedades();
+    mostrarProductos();
+    mostrarNovedades();
 });
