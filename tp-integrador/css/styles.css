@@ -68,10 +68,12 @@ a:hover {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+
 .menu-link:hover,
 .menu-link.active {
-  background-color: rgba(255, 183, 3, 0.2);
+  background-color: #000;
   color: #ffb703;
+  box-shadow: 0 0 8px rgba(255, 183, 3, 0.3);
 }
 
 /* MAIN */
@@ -118,6 +120,14 @@ a:hover {
   border-radius: 8px;
   margin-top: 25px;
   box-shadow: 0 4px 12px rgba(255, 183, 3, 0.2);
+}
+.view-all-products{
+  margin-top: 20px;
+  text-align: center;
+}
+.view-all-products a{
+  background-color: #ffb703;
+  color: #000;
 }
 
 /* PRODUCTOS */
@@ -184,6 +194,7 @@ a:hover {
   text-align: center;
   border-top: 1px solid #333;
 }
+
 
 /* NOVEDADES */
 .news-grid {
@@ -255,7 +266,6 @@ a:hover {
   letter-spacing: 0.3px;
 }
 
-
 /* RESPONSIVE */
 @media (max-width: 992px) {
   .navbar-menu {
@@ -285,4 +295,89 @@ a:hover {
   .hero-subtitle {
     font-size: 1rem;
   }
+}
+
+/* SECCIÓN MAPA */
+
+.map-section {
+  padding: 60px 20px;
+  background-color: #121212;
+}
+
+.map-title {
+  color: #ffb703;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.map-subtitle {
+  color: #f0f0f0;
+  margin-bottom: 25px;
+}
+
+.map-container {
+  border: 3px solid #ffb703;
+  border-radius: 10px;
+  overflow: hidden;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow: 0 6px 18px rgba(255, 183, 3, 0.25);
+}
+.row.justify-content-center {
+  margin-top: 60px;
+
+}
+.value-card h5{
+  color: #ffb703;
+  
+}
+/* ====================== */
+/* SECCIÓN REDES SOCIALES */
+/* ====================== */
+.social-section {
+  background-color: #121212;
+  padding: 80px 20px;
+  border-top: 1px solid rgba(255, 183, 3, 0.15);
+  text-align: center;
+}
+
+.social-title {
+  font-size: 2rem;
+  color: #ffb703;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.social-subtitle {
+  color: #e0e0e0;
+  margin-bottom: 40px;
+  font-size: 1.1rem;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.social-link {
+  font-size: 1.8rem;
+  color: #fff;
+  background-color: #1c1c1c;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 183, 3, 0.2);
+}
+
+.social-link:hover {
+  background-color: #ffb703;
+  color: #000;
+  transform: translateY(-4px);
+  box-shadow: 0 0 15px rgba(255, 183, 3, 0.4);
 }
