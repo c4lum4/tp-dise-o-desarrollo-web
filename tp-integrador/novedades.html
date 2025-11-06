@@ -29,12 +29,50 @@
 
   <!-- CONTENIDO -->
   <main class="main-content padding-top-large">
-    <h1 class="text-center margin-bottom-medium">Novedades</h1>
-    <p class="text-center text-muted margin-bottom-large">Mantente al día con nuestros últimos lanzamientos y ofertas especiales.</p>
+    <!-- HERO específico para novedades -->
+    <section class="novedades-hero text-center margin-bottom-large">
+      <div class="novedades-hero-inner container">
+        <h1 class="novedades-title">Novedades &amp; Lanzamientos</h1>
+        <p class="novedades-lead">Enterate primero de nuestras colecciones, ofertas y lanzamientos exclusivos. Mirá lo más destacado abajo.</p>
+      </div>
+    </section>
 
-    <div class="news-grid container" id="novedades">
-      <!-- Se carga dinámicamente con JS -->
-    </div>
+    <!-- NOTICIA DESTACADA -->
+    <section class="novedad-feature container margin-bottom-large">
+      <article class="feature-card row g-0 align-items-center">
+        <div class="col-md-6 feature-media">
+          <img src="images/novedades/post1.jpg" alt="Destacado" class="img-fluid">
+        </div>
+        <div class="col-md-6 feature-body p-4">
+          <h2 class="feature-title">Colección Primavera — Edición Limitada</h2>
+          <p class="feature-text">Te mostramos lo mejor de la nueva colección: piezas seleccionadas, calidad premium y diseños exclusivos. Solo por tiempo limitado.</p>
+          <p><a href="productos.html" class="btn btn-outline-light">Ver colección</a></p>
+        </div>
+      </article>
+    </section>
+
+    <!-- GRID DE NOVEDADES (cards alternadas) -->
+    <section class="novedades-list container">
+      <div class="novedades-grid">
+        <article class="novedad-card">
+          <div class="novedad-media"><img src="images/novedades/post2.jpg" alt="Novedad 2"></div>
+          <div class="novedad-body">
+            <h3>Preventa exclusiva</h3>
+            <p>Lanzamos una preventa con descuento especial para suscriptores. Suscribite y accedé antes que nadie.</p>
+          </div>
+        </article>
+
+        <article class="novedad-card reverse">
+          <div class="novedad-media"><img src="images/novedades/post3.jpg" alt="Novedad 3"></div>
+          <div class="novedad-body">
+            <h3>Evento en tienda</h3>
+            <p>Sumate a nuestro evento de lanzamiento con descuentos, música y regalos. Cupos limitados.</p>
+          </div>
+        </article>
+
+      
+      </div>
+    </section>
   </main>
 
   <!-- FOOTER -->

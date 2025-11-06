@@ -51,7 +51,34 @@
     <section class="hero-section text-center margin-bottom-large">
       <h1 class="hero-title margin-bottom-medium">Bienvenido a VANDAL</h1>
       <p class="hero-subtitle">Tu tienda online favorita. Productos de calidad al mejor precio.</p>
-      <img src="images/banner.jpg" alt="Banner principal" class="hero-image">
+
+      <!-- Carousel principal (3 imágenes) -->
+  <div id="heroCarousel" class="carousel slide carousel-fade hero-carousel" data-bs-ride="carousel" data-bs-interval="5000" data-bs-pause="hover">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="images/banner.jpg" class="d-block w-100" alt="Banner principal">
+          </div>
+          <div class="carousel-item">
+            <img src="images/imagen-carru-2.jpg" class="d-block w-100" alt="Banner secundario 1">
+          </div>
+          <div class="carousel-item">
+            <img src="images/imagen-carru-3.jpg" class="d-block w-100" alt="Banner secundario 2">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Siguiente</span>
+        </button>
+      </div>
     </section>
 
     <!-- PRODUCTOS DESTACADOS -->

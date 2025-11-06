@@ -79,7 +79,7 @@ a:hover {
 /* MAIN */
 .main-content {
   padding: 60px 20px;
-  padding-top: 120px;
+  padding-top: 80px; /* subir el contenido inicial para que el hero quede más arriba */
 }
 
 .margin-bottom-medium {
@@ -92,11 +92,9 @@ a:hover {
 
 /* HERO */
 .hero-section {
-  background-color: #1a1a1a;
-  padding: 90px 20px;
+  /* Menos padding superior para acercar título/subtítulo/imagen hacia arriba */
+  padding: 40px 20px; /* reducir para elevar el bloque hero */
   text-align: center;
-  border-radius: 12px;
-  box-shadow: 0 3px 10px rgba(255, 183, 3, 0.15);
 }
 
 .hero-title {
@@ -104,23 +102,82 @@ a:hover {
   font-weight: 700;
   margin-bottom: 15px;
   color: #ffb703;
+  position: relative;
+}
+
+
+.hero-title:hover {
+
+  color: #ffd88a;
 }
 
 .hero-subtitle {
   font-size: 1.1rem;
   color: #e0e0e0;
   max-width: 650px;
-  margin: 0 auto 30px;
+  margin: 0 auto 24px;
   line-height: 1.6;
+  text-shadow: 0 6px 16px rgba(0,0,0,0.35);
 }
 
+
+
 .hero-image {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  margin-top: 25px;
-  box-shadow: 0 4px 12px rgba(255, 183, 3, 0.2);
+  width: min(98vw, 1400px);
+  max-width: none;
+  height: clamp(320px, 30vh, 420px);
+  object-fit: cover;
+  display: block;
+  margin: 30px auto;
+  border-radius: 12px;        
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
 }
+
+/* HERO CAROUSEL */
+.hero-carousel {
+  width: min(98vw, 1400px);
+  margin: 20px auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+}
+.hero-carousel .carousel-item {
+  /* altura moderada para el hero */
+  height: clamp(530px, 40vh, 560px);
+  position: relative;
+  overflow: hidden;
+}
+.hero-carousel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  /* transición suave para el efecto "zoom" cuando la slide se activa */
+  transition: opacity 0.9s ease;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+
+.carousel-indicators .active {
+  background-color: #ffb703;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+}
+
+/* overlay/stack adjustments removed in revert */
+
+/* Refuerzo para la transición de fade de Bootstrap */
+.carousel-fade .carousel-item {
+  transition-property: opacity;
+  transition-duration: 0.8s;
+  transition-timing-function: ease;
+}
+
 .view-all-products{
   margin-top: 20px;
   text-align: center;
@@ -275,6 +332,18 @@ a:hover {
   }
 }
 
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-title,
+  .hero-subtitle,
+  .hero-carousel,
+  .hero-carousel img,
+  .carousel-fade .carousel-item {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
 @media (max-width: 768px) {
   h1 {
     font-size: 2rem;
@@ -294,6 +363,22 @@ a:hover {
 
   .hero-subtitle {
     font-size: 1rem;
+  }
+  .hero-image {
+    width: calc(100% - 40px);
+    max-width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin: 16px auto;
+  }
+  .hero-carousel {
+    width: calc(100% - 40px);
+    border-radius: 6px;
+    margin: 16px auto;
+  }
+  .hero-carousel .carousel-item {
+    height: 360px;
   }
 }
 
@@ -380,4 +465,185 @@ a:hover {
   color: #000;
   transform: translateY(-4px);
   box-shadow: 0 0 15px rgba(255, 183, 3, 0.4);
+}
+
+/* ======================
+   NOVEDADES (página dedicada)
+   ====================== */
+.novedades-hero {
+  background: linear-gradient(180deg, rgba(255,183,3,0.06), rgba(0,0,0,0.0));
+  padding: 48px 0 24px;
+}
+.novedades-hero .novedades-title {
+  font-size: 2.4rem;
+  color: #ffb703;
+  margin-bottom: 8px;
+  font-weight: 800;
+}
+.novedades-hero .novedades-lead {
+  color: #e7e7e7;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.novedad-feature .feature-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+}
+.novedad-feature .feature-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.novedad-feature .feature-body {
+  background: linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.02));
+}
+.feature-title {
+  color: #fff;
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+}
+.feature-text {
+  color: #ddd;
+}
+
+.novedades-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 26px;
+}
+.novedad-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: center;
+  background: #141414;
+  padding: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+  /* limitar la altura para que las cards sean más chicas */
+  max-height: 260px;
+}
+.novedad-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+}
+.novedad-media img {
+  width: 100%;
+  height: 220px; /* altura más reducida */
+  object-fit: cover;
+  border-radius: 6px;
+}
+.novedad-body h3 {
+  margin-top: 0;
+  color: #ffb703;
+}
+.novedad-body p { color: #ddd; }
+
+/* variante inversa: imagen a la derecha */
+.novedad-card.reverse { grid-template-columns: 1fr 1fr; }
+.novedad-card.reverse .novedad-media { order: 2; }
+.novedad-card.reverse .novedad-body { order: 1; }
+
+@media (min-width: 900px) {
+  .novedades-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .novedad-card { grid-template-columns: 1fr; max-height: none; }
+  .novedad-card.reverse .novedad-media,
+  .novedad-card.reverse .novedad-body { order: initial; }
+  .novedad-feature .feature-card { flex-direction: column; }
+  .novedad-media img { height: 160px; }
+}
+
+/* ======================
+   NOSOTROS / ABOUT
+   ====================== */
+.about-hero {
+  background: linear-gradient(180deg, rgba(255,183,3,0.02), rgba(0,0,0,0.02));
+}
+.about-hero-inner {
+  gap: 30px;
+  display: flex;
+  align-items: center;
+  padding: 36px 0;
+}
+.about-hero-text .section-title {
+  font-size: 2.4rem;
+  color: #ffb703;
+  margin-bottom: 8px;
+}
+.about-hero-text .lead {
+  color: #e6e6e6;
+  max-width: 640px;
+}
+.btn-hero {
+  background: #ffb703;
+  color: #000;
+  border: none;
+  padding: 10px 18px;
+  font-weight: 600;
+}
+.about-hero-media {
+  flex: 1 1 420px;
+  min-height: 260px;
+  background-image: url('../images/nosotros.jpg');
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+}
+
+.value-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.03);
+  min-height: 160px;
+}
+.value-icon { color: #ffb703; }
+
+/* CONTACTO */
+.contact-section {
+  padding: 60px 20px;
+  border-radius: 12px;
+}
+
+.contact-form .form-control {
+  background-color: #1a1a1a;
+  border: 1px solid rgba(255,183,3,0.3);
+  color: #fff; 
+}
+
+.contact-form .form-control::placeholder {
+  color: #ffffffcc; 
+}
+
+.contact-form .form-control:focus {
+  border-color: #ffb703;
+}
+
+.btn-vandal {
+  background: linear-gradient(90deg, #ffb703 0%, #fb8500 100%);
+  color: #000;
+  font-weight: 600;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-vandal:hover {
+  background: linear-gradient(90deg, #fb8500 0%, #ffb703 100%);
+  color: #000;
+  transform: translateY(-3px);
+  box-shadow: 0 0 12px rgba(255,183,3,0.5);
+}
+
+
+@media (max-width: 992px) {
+  .about-hero-inner { flex-direction: column-reverse; }
+  .about-hero-media { width: 100%; height: 220px; }
 }
