@@ -142,22 +142,21 @@ a:hover {
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+  
 }
 .hero-carousel .carousel-item {
-  /* altura moderada para el hero */
-  height: clamp(530px, 40vh, 560px);
-  position: relative;
-  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.hero-carousel img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  /* transición suave para el efecto "zoom" cuando la slide se activa */
-  transition: opacity 0.9s ease;
-  transform-origin: center center;
-  will-change: transform;
+
+.hero-carousel .carousel-item img {
+  width: auto;              /* no se estira a todo el ancho */
+  max-width: 100%;          /* no se sale del contenedor */
+  height: auto;
+  max-height: 80vh;         /* ajusta la altura visible */
+  object-fit: cover;      /* mantiene proporciones */
+  margin: 0 auto;           /* centra horizontalmente */
 }
 
 
