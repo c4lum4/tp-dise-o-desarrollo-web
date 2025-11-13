@@ -80,6 +80,7 @@ a:hover {
 .main-content {
   padding: 60px 20px;
   padding-top: 80px; /* subir el contenido inicial para que el hero quede más arriba */
+
 }
 
 .margin-bottom-medium {
@@ -471,10 +472,6 @@ a:hover {
 /* ======================
    NOVEDADES (página dedicada)
    ====================== */
-.novedades-hero {
-  background: linear-gradient(180deg, rgba(255,183,3,0.06), rgba(0,0,0,0.0));
-  padding: 48px 0 24px;
-}
 .novedades-hero .novedades-title {
   font-size: 2.4rem;
   color: #ffb703;
@@ -539,11 +536,6 @@ a:hover {
   object-fit: cover;
   border-radius: 6px;
 }
-.novedad-body h3 {
-  margin-top: 0;
-  color: #ffb703;
-}
-.novedad-body p { color: #ddd; }
 
 /* variante inversa: imagen a la derecha */
 .novedad-card.reverse { grid-template-columns: 1fr 1fr; }
@@ -565,9 +557,7 @@ a:hover {
 /* ======================
    NOSOTROS / ABOUT
    ====================== */
-.about-hero {
-  background: linear-gradient(180deg, rgba(255,183,3,0.02), rgba(0,0,0,0.02));
-}
+
 .about-hero-inner {
   gap: 30px;
   display: flex;
@@ -653,3 +643,14 @@ a:hover {
 .novedad-feature h2 {
   color: #ffb703;
 }
+
+/* ===== SEPARAR EL TÍTULO "CATÁLOGO DE PRODUCTOS" DE LA NAVBAR ===== */
+
+.main-content {
+  padding-top: 150px ;   /* 🔥 separa todo, se ve impecable */
+}
+.main-content h1 {
+  color: #ffb703 ;
+}
+
+
