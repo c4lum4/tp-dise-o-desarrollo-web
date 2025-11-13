@@ -646,3 +646,8 @@ a:hover {
   .about-hero-inner { flex-direction: column-reverse; }
   .about-hero-media { width: 100%; height: 220px; }
 }
+
+
+.novedad-feature h2 {
+  color: #ffb703;
+}
