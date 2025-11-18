@@ -2,6 +2,30 @@
 //      NOVEDADES
 // ======================
 
+const productosCatalogo = [
+  {
+    id: "remera-oversize",
+    titulo: "Blazer Minimal",
+    descripcion: "Saco estructurado con corte urbano y liviano.",
+    imagen: "images/producto1.png",
+    precio: "$12.000",
+  },
+  {
+    id: "buzo-canguro",
+    titulo: "Vestido Aurora",
+    descripcion: "Vestido midi con vuelo suave y textura satinada.",
+    imagen: "images/producto2.png",
+    precio: "$18.500",
+  },
+  {
+    id: "jogging-urban",
+    titulo: "Campera Polar Nube",
+    descripcion: "Abrigo polar premium para climas fríos.",
+    imagen: "images/producto3.png",
+    precio: "$16.500",
+  },
+];
+
 function mostrarNovedades() {
   const div = document.getElementById("novedades");
 
@@ -52,30 +76,120 @@ function mostrarNovedades() {
 //   PRODUCTOS + CARRITO
 // ======================
 
-// Cargar carrito desde localStorage
-let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+// Normalizar carrito almacenado (soporta versión anterior sin cantidades)
+function normalizarCarrito(data) {
+  if (!Array.isArray(data)) return [];
 
-// Actualizar contador en la navbar
+  return data.reduce((acc, item) => {
+    if (!item || (!item.titulo && !item.id)) return acc;
+
+    const safeId =
+      item.id || generarIdDesdeTitulo(item.titulo) || crypto.randomUUID();
+
+    const existente = acc.find((prod) => prod.id === safeId);
+    const cantidad = Number(item.cantidad) > 0 ? Number(item.cantidad) : 1;
+
+    if (existente) {
+      existente.cantidad += cantidad;
+    } else {
+      acc.push({
+        id: safeId,
+        titulo: item.titulo,
+        precio: item.precio,
+        imagen: item.imagen,
+        cantidad,
+      });
+    }
+
+    return acc;
+  }, []);
+}
+
+function generarIdDesdeTitulo(titulo) {
+  if (!titulo) return null;
+  return titulo
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9-]/g, "");
+}
+
+function guardarCarrito() {
+  localStorage.setItem("carrito", JSON.stringify(carrito));
+}
+
+let carrito = normalizarCarrito(JSON.parse(localStorage.getItem("carrito")) || []);
+
+function obtenerCantidadProducto(id) {
+  const producto = carrito.find((item) => item.id === id);
+  return producto ? producto.cantidad : 0;
+}
+
 function actualizarContadorCarrito() {
   const contador = document.getElementById("contador-carrito");
   if (contador) {
-    contador.textContent = carrito.length;
+    const total = carrito.reduce((acc, item) => acc + item.cantidad, 0);
+    contador.textContent = total;
   }
 }
 
-// Agregar producto al carrito
-function agregarAlCarrito(titulo, precio, imagen) {
-  const producto = { titulo, precio, imagen };
+function actualizarBadgeProducto(id) {
+  const badge = document.getElementById(`cantidad-${id}`);
+  if (badge) {
+    badge.textContent = obtenerCantidadProducto(id);
+  }
+}
 
-  carrito.push(producto);
+function modificarCantidadProducto(id, delta, fallbackData) {
+  const productoData =
+    fallbackData || productosCatalogo.find((product) => product.id === id);
+  if (!productoData) return;
 
-  // Guardar carrito actualizado
-  localStorage.setItem("carrito", JSON.stringify(carrito));
+  const existente = carrito.find((item) => item.id === id);
 
-  // Actualizar contador
+  if (delta > 0) {
+    if (existente) {
+      existente.cantidad += delta;
+    } else {
+      carrito.push({
+        id,
+        titulo: productoData.titulo,
+        precio: productoData.precio,
+        imagen: productoData.imagen,
+        cantidad: delta,
+      });
+    }
+  } else if (existente) {
+    existente.cantidad = Math.max(0, existente.cantidad + delta);
+    if (existente.cantidad === 0) {
+      carrito = carrito.filter((item) => item.id !== id);
+    }
+  }
+
+  guardarCarrito();
   actualizarContadorCarrito();
+  actualizarBadgeProducto(id);
+}
 
-  // Feedback simple
+function incrementarProducto(id) {
+  modificarCantidadProducto(id, 1);
+}
+
+function disminuirProducto(id) {
+  modificarCantidadProducto(id, -1);
+}
+
+// Compatibilidad con el botón anterior (por si queda en algún otro HTML)
+function agregarAlCarrito(titulo, precio, imagen) {
+  const producto =
+    productosCatalogo.find((item) => item.titulo === titulo) || {
+      id: generarIdDesdeTitulo(titulo),
+      titulo,
+      precio,
+      imagen,
+    };
+
+  modificarCantidadProducto(producto.id, 1, producto);
+
   console.log(`Producto agregado: ${titulo}`);
 }
 
@@ -84,43 +198,29 @@ function mostrarProductosDestacados() {
   const div = document.getElementById("productos");
 
   if (div) {
-    const productos = [
-      {
-        titulo: "Remera Oversize",
-        descripcion: "Cómoda y moderna para tu día a día.",
-        imagen: "images/producto1.jpg",
-        precio: "$12.000",
-      },
-      {
-        titulo: "Buzo Canguro",
-        descripcion: "Perfecto para días frescos y relajados.",
-        imagen: "images/producto2.jpg",
-        precio: "$18.500",
-      },
-      {
-        titulo: "Jogging Urban",
-        descripcion: "Estilo urbano con máxima comodidad.",
-        imagen: "images/producto3.jpg",
-        precio: "$16.500",
-      },
-    ];
-
     div.innerHTML = "";
 
-    productos.forEach((producto) => {
+    productosCatalogo.forEach((producto) => {
+      const cantidadSeleccionada = obtenerCantidadProducto(producto.id);
+
       const card = `
         <div class="product-card">
-          <img src="${producto.imagen}" alt="${producto.titulo}" class="product-card-image">
+          <div class="product-card-media">
+            <img src="${producto.imagen}" alt="${producto.titulo}" class="product-card-image">
+          </div>
           <div class="product-card-body">
             <h5 class="product-card-title">${producto.titulo}</h5>
             <p class="product-card-description">${producto.descripcion}</p>
-            <p class="product-card-price">${producto.precio}</p>
-
-            <!-- BOTÓN AGREGAR -->
-            <button class="btn-agregar"
-              onclick="agregarAlCarrito('${producto.titulo}', '${producto.precio}', '${producto.imagen}')">
-              Agregar al carrito
-            </button>
+            <div class="product-card-price-row">
+              <p class="product-card-price">${producto.precio}</p>
+              <span class="product-card-shipping">Envío 48h</span>
+            </div>
+            <div class="quantity-control">
+              <button class="quantity-btn minus" onclick="disminuirProducto('${producto.id}')">-</button>
+              <span class="quantity-value" id="cantidad-${producto.id}">${cantidadSeleccionada}</span>
+              <button class="quantity-btn plus" onclick="incrementarProducto('${producto.id}')">+</button>
+            </div>
+            <p class="quantity-hint">Modificá la cantidad sin salir del catálogo.</p>
           </div>
         </div>
       `;
@@ -136,5 +236,5 @@ function mostrarProductosDestacados() {
 document.addEventListener("DOMContentLoaded", () => {
   mostrarNovedades();
   mostrarProductosDestacados();
-  actualizarContadorCarrito(); // contador del carrito
+  actualizarContadorCarrito();
 });
