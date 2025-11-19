@@ -1,6 +1,5 @@
-// ======================
-//      NOVEDADES
-// ======================
+
+//NOVEDADES 
 
 const productosCatalogo = [
   {
@@ -72,11 +71,8 @@ function mostrarNovedades() {
   }
 }
 
-// ======================
-//   PRODUCTOS + CARRITO
-// ======================
+//PRODUCTOS + CARRITO
 
-// Normalizar carrito almacenado (soporta versión anterior sin cantidades)
 function normalizarCarrito(data) {
   if (!Array.isArray(data)) return [];
 
@@ -178,7 +174,6 @@ function disminuirProducto(id) {
   modificarCantidadProducto(id, -1);
 }
 
-// Compatibilidad con el botón anterior (por si queda en algún otro HTML)
 function agregarAlCarrito(titulo, precio, imagen) {
   const producto =
     productosCatalogo.find((item) => item.titulo === titulo) || {
@@ -229,9 +224,7 @@ function mostrarProductosDestacados() {
   }
 }
 
-// ======================
-//     EJECUCIÓN INICIAL
-// ======================
+//EJECUCIÓN INICIAL
 
 document.addEventListener("DOMContentLoaded", () => {
   mostrarNovedades();
